@@ -25,11 +25,11 @@ public class HospitalRunner {
         HospitalRepository hospitalRepository = new HospitalRepository();
         HospitalService hospitalService = new HospitalService(hospitalRepository);
 
-        DoctorRepository doctorRepository = new DoctorRepository();
-        DoctorService doctorService = new DoctorService(doctorRepository);
-
         PatientRepository patientRepository = new PatientRepository();
         PatientService patientService = new PatientService(patientRepository);
+
+        DoctorRepository doctorRepository = new DoctorRepository();
+        DoctorService doctorService = new DoctorService(doctorRepository, patientService);
 
 
         boolean exit = false;
@@ -82,6 +82,7 @@ public class HospitalRunner {
             System.out.println("3. Delete Doctor By ID");
             System.out.println("4. Find All Doctors");
             System.out.println("5. Update Doctor By ID");
+            System.out.println("6. Add Patient to Doctor : ");
             System.out.println("0. Return to Main Menu");
             System.out.print("Enter your choice: ");
 
@@ -104,10 +105,12 @@ public class HospitalRunner {
                     break;
                 case 4:
                     doctorService.findAllDoctor();
-
                     break;
                 case 5:
 
+                    break;
+                case 6:
+                    doctorService.addPatientToDoctor();
                     break;
                 case 0:
                     exit = true;

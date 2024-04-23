@@ -1,8 +1,11 @@
 package Hospital_Project.service;
 
 import Hospital_Project.domain.Doctor;
+import Hospital_Project.domain.Patient;
 import Hospital_Project.repository.DoctorRepository;
 
+import javax.print.Doc;
+import java.util.List;
 import java.util.Scanner;
 
 public class DoctorService{
@@ -10,9 +13,12 @@ public class DoctorService{
     private final Scanner scanner = new Scanner(System.in);
 
     private final DoctorRepository doctorRepository;
+    private final PatientService patientService;
 
-    public DoctorService(DoctorRepository doctorRepository) {
+
+    public DoctorService(DoctorRepository doctorRepository, PatientService patientService) {
         this.doctorRepository = doctorRepository;
+        this.patientService = patientService;
     }
 
     public void saveDoctor() {
@@ -43,10 +49,26 @@ public class DoctorService{
     }
 
     public void deleteDoctor(Long id) {
-        Doctor doctor = doctorRepository.delete(id);
+        Doctor doctor = findDoctorById(id);
+        doctorRepository.delete(doctor);
         System.out.println("Doctor was deleted successfully!! Doctor ID : " + doctor.getId());
     }
 
     public void findAllDoctor() {
+        List<Doctor> doctorList = doctorRepository.findAll();
+        System.out.println("********** ALL DOCTORS *******");
+        for(Doctor doctor: doctorList){
+            System.out.println(doctor);
+        }
+        System.out.println("****************************");
+    }
+
+    public void addPatientToDoctor() {
+        System.out.println("Enter the doctor ID : ");
+        Long id = doctorRepository.find(scanner.nextLong()).getId();
+        System.out.println("Enter the patient ID : ");
+        Patient patient = patientService.findPatientById(scanner.nextLong());
+        doctorRepository.addPatientToDoctor(patient,id);
+        System.out.println("Patient was successfully added!! Patient ID : " + patient.getPatientID());
     }
 }
