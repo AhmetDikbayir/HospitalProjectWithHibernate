@@ -16,7 +16,8 @@ public class Doctor{
     private String lastname;
 
     @Column(nullable = false)
-    private String title;
+    @ManyToOne
+    private Title title;
 
     @Column(nullable = false)
     private String department;
@@ -33,7 +34,7 @@ public class Doctor{
     public Doctor() {
     }
 
-    public Doctor(Long id, String name, String lastname, String title, String department) {
+    public Doctor(Long id, String name, String lastname, Title title, String department) {
         this.id = id;
         this.name = name;
         this.lastname = lastname;
@@ -75,11 +76,11 @@ public class Doctor{
         this.patientList = patientList;
     }
 
-    public String getTitle() {
+    public Title getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(Title title) {
         this.title = title;
     }
 

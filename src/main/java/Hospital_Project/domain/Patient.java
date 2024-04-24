@@ -32,7 +32,6 @@ public class Patient{
 
     //Getter - Setter ***************************
 
-
     public Long getPatientID() {
         return patientID;
     }
@@ -66,8 +65,6 @@ public class Patient{
     }
 
     //toString()  ***********************
-
-
     @Override
     public String toString() {
         return "Patient{" +

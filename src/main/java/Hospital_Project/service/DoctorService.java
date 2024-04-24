@@ -4,7 +4,6 @@ import Hospital_Project.domain.Doctor;
 import Hospital_Project.domain.Patient;
 import Hospital_Project.repository.DoctorRepository;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,12 +22,16 @@ public class DoctorService{
 
     public void saveDoctor() {
         Doctor doctor = new Doctor();
+
         System.out.println("Enter doctor name : ");
         doctor.setName(scanner.nextLine());
+
         System.out.println("Enter doctor lastname : ");
         doctor.setLastname(scanner.nextLine());
+
         System.out.println("Enter doctor title : ");
-        doctor.setTitle(scanner.nextLine());
+        doctor.getTitle().setTitleName(scanner.nextLine());
+
         System.out.println("Enter doctor department : ");
         doctor.setDepartment(scanner.nextLine());
 
