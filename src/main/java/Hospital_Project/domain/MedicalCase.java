@@ -21,7 +21,7 @@ public class MedicalCase {
     private Doctor doctor;
 
     @ManyToMany
-    private List<Patient> patientList = new ArrayList<>();
+    private List<Patient> patients = new ArrayList<>();
 
 
     // Getter - Setter
@@ -67,10 +67,10 @@ public class MedicalCase {
     }
 
     public List<Patient> getPatientList() {
-        return patientList;
+        return patients;
     }
 
     public void setPatientList(List<Patient> patientList) {
-        this.patientList = patientList;
+        this.patients = patientList;
     }
 }

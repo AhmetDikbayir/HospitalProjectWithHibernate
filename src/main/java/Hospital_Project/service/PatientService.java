@@ -1,5 +1,6 @@
 package Hospital_Project.service;
 
+import Hospital_Project.domain.MedicalCase;
 import Hospital_Project.domain.Patient;
 import Hospital_Project.repository.PatientRepository;
 
@@ -11,9 +12,11 @@ import static Hospital_Project.service.HospitalService.*;
 public class PatientService {
     private Scanner scanner = new Scanner(System.in);
     private final PatientRepository patientRepository;
+    private final MedicalCaseService medicalCaseService;
 
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, MedicalCaseService medicalCaseService) {
         this.patientRepository = patientRepository;
+        this.medicalCaseService = medicalCaseService;
     }
 
     public void savePatient(){
@@ -25,8 +28,12 @@ public class PatientService {
         System.out.println("Enter patient lastname : ");
         patient.setLastname(scanner.nextLine());
 
+        //hastaya medikal case ekleyeceğiz
         System.out.println("Enter patient actual case : ");
-        patient.setActualCase(scanner.nextLine());
+        MedicalCase medicalCase = medicalCaseService.findMedicalcase();
+        patient.getMedicalCases().add(medicalCase);
+
+
 
         patientRepository.save(patient);
         System.out.println("Patient was successfully added!!");

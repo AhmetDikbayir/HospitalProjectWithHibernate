@@ -14,13 +14,38 @@ public class TitleService {
         this.titleRepository = titleRepository;
     }
 
-    public void saveTitle(String doctorTitle, Doctor doctor) {
+    public void addTitle() {
 
         Title title = new Title();
-        title.setTitleName(doctorTitle);
-        doctor.setTitle(title);
-        titleRepository.save(title);
+        title.setTitleName("Allergist");
+        Title title1 = new Title();
+        title1.setTitleName("Norolog");
+        Title title2 = new Title();
+        title2.setTitleName("Genel cerrah");
+        Title title3 = new Title();
+        title3.setTitleName("Cocuk doktoru");
+        Title title4 = new Title();
+        title4.setTitleName("Dahiliye");
+        Title title5 = new Title();
+        title5.setTitleName("Kardiolog");
 
+        titleRepository.save(title);
+        titleRepository.save(title1);
+        titleRepository.save(title2);
+        titleRepository.save(title3);
+        titleRepository.save(title4);
+        titleRepository.save(title5);
+        System.out.println(title);
+        System.out.println(title1);
+        System.out.println(title2);
+
+    }
+    public Title saveTitle() {
+        Title title = new Title();
+        System.out.println("Lütfen eklemek istediğiniz ünvanı giriniz : ");
+        title.setTitleName(scan.nextLine());
+        titleRepository.save(title);
+        return title;
     }
 
     public Title findTitleByName() {

@@ -13,8 +13,9 @@ public class Patient{
     private String name;
     @Column(nullable = false)
     private String lastname;
-    @Column(nullable = false)
-    private String actualCase;
+
+    @ManyToMany(mappedBy = "patients")
+    private List<MedicalCase> medicalCases;
 
     @ManyToMany(mappedBy = "patientList", fetch = FetchType.EAGER)
     private List<Doctor> doctorList;
@@ -24,13 +25,15 @@ public class Patient{
     public Patient() {
     }
 
-    public Patient(String name, String lastname, String actualCase) {
+    //toString() ****************
+    public Patient(String name, String lastname, List<MedicalCase> medicalCases) {
         this.name = name;
         this.lastname = lastname;
-        this.actualCase = actualCase;
+        this.medicalCases = medicalCases;
     }
 
     //Getter - Setter ***************************
+
 
     public Long getPatientID() {
         return patientID;
@@ -56,22 +59,29 @@ public class Patient{
         this.lastname = lastname;
     }
 
-    public String getActualCase() {
-        return actualCase;
+    public List<MedicalCase> getMedicalCases() {
+        return medicalCases;
     }
 
-    public void setActualCase(String actualCase) {
-        this.actualCase = actualCase;
+    public void setMedicalCases(List<MedicalCase> medicalCases) {
+        this.medicalCases = medicalCases;
     }
 
-    //toString()  ***********************
+    public List<Doctor> getDoctorList() {
+        return doctorList;
+    }
+
+    public void setDoctorList(List<Doctor> doctorList) {
+        this.doctorList = doctorList;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
                 "patientID=" + patientID +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", actualCase='" + actualCase + '\'' +
+                ", medicalCases=" + medicalCases +
                 '}';
     }
 }

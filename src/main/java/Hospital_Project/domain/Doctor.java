@@ -19,8 +19,8 @@ public class Doctor{
     @ManyToOne
     private Title title;
 
-    @Column(nullable = false)
-    private String department;
+//    @Column(nullable = false)
+//    private String department;
 
     @ManyToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     @JoinTable(
@@ -39,7 +39,7 @@ public class Doctor{
         this.name = name;
         this.lastname = lastname;
         this.title = title;
-        this.department = department;
+        //this.department = department;
     }
 
     //Getter - Setter  *************************
@@ -84,13 +84,13 @@ public class Doctor{
         this.title = title;
     }
 
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
+//    public String getDepartment() {
+//        return department;
+//    }
+//
+//    public void setDepartment(String department) {
+//        this.department = department;
+//    }
 
     //toString()  **********************
 
@@ -101,7 +101,7 @@ public class Doctor{
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", title='" + title + '\'' +
-                ", department='" + department + '\'' +
+                //", department='" + department + '\'' +
                 ", patientList=" + patientList +
                 '}';
     }

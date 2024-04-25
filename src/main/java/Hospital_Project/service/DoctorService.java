@@ -13,11 +13,13 @@ public class DoctorService{
 
     private final DoctorRepository doctorRepository;
     private final PatientService patientService;
+    private final TitleService titleService;
 
 
-    public DoctorService(DoctorRepository doctorRepository, PatientService patientService) {
+    public DoctorService(DoctorRepository doctorRepository, PatientService patientService, TitleService titleService) {
         this.doctorRepository = doctorRepository;
         this.patientService = patientService;
+        this.titleService = titleService;
     }
 
     public void saveDoctor() {
@@ -30,10 +32,10 @@ public class DoctorService{
         doctor.setLastname(scanner.nextLine());
 
         System.out.println("Enter doctor title : ");
-        doctor.getTitle().setTitleName(scanner.nextLine());
+        doctor.setTitle(titleService.findTitleByName());
 
-        System.out.println("Enter doctor department : ");
-        doctor.setDepartment(scanner.nextLine());
+//        System.out.println("Enter doctor department : ");
+//        doctor.setDepartment(scanner.nextLine());
 
         doctorRepository.save(doctor);
         System.out.println("Doctor was saved successfully!!");

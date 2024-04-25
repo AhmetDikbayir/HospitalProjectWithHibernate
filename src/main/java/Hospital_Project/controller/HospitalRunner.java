@@ -1,12 +1,8 @@
 package Hospital_Project.controller;
 import Hospital_Project.config.HibernateUtils;
 import Hospital_Project.domain.Patient;
-import Hospital_Project.repository.DoctorRepository;
-import Hospital_Project.repository.HospitalRepository;
-import Hospital_Project.repository.PatientRepository;
-import Hospital_Project.service.DoctorService;
-import Hospital_Project.service.HospitalService;
-import Hospital_Project.service.PatientService;
+import Hospital_Project.repository.*;
+import Hospital_Project.service.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,11 +21,17 @@ public class HospitalRunner {
         HospitalRepository hospitalRepository = new HospitalRepository();
         HospitalService hospitalService = new HospitalService(hospitalRepository);
 
+        MedicalCaseRepository medicalCaseRepository = new MedicalCaseRepository();
+        MedicalCaseService medicalCaseService = new MedicalCaseService(medicalCaseRepository);
+
         PatientRepository patientRepository = new PatientRepository();
-        PatientService patientService = new PatientService(patientRepository);
+        PatientService patientService = new PatientService(patientRepository, medicalCaseService);
+
+        TitleRepository titleRepository = new TitleRepository();
+        TitleService titleService = new TitleService(titleRepository);
 
         DoctorRepository doctorRepository = new DoctorRepository();
-        DoctorService doctorService = new DoctorService(doctorRepository, patientService);
+        DoctorService doctorService = new DoctorService(doctorRepository, patientService, titleService);
 
 
         boolean exit = false;
